@@ -128,6 +128,7 @@ public class ProductoController  implements Initializable{
         productos.add(producto);
         for(Producto producto1 : productos){
             System.out.println(producto1);
+            System.out.println();
         }
     }
     public void MostrarAlerta(){
