@@ -11,6 +11,7 @@ module org.example.facturacion {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires javafx.graphics;
+    requires java.desktop;
 
     opens org.example.facturacion to javafx.fxml;
     exports org.example.facturacion;
