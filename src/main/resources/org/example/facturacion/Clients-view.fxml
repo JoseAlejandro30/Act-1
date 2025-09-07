@@ -20,10 +20,10 @@
       <Label layoutX="248.0" layoutY="11.0" text="CLIENTES" />
       <VBox layoutX="159.0" layoutY="72.0" prefHeight="279.0" prefWidth="266.0" spacing="50.0">
          <children>
-            <TextField fx:id="txtId" alignment="CENTER" text="ID" />
-            <TextField fx:id="txtName" text="Nombre" />
-            <TextField fx:id="txtEmail" text="Email" />
-            <TextField fx:id="txtIdentificacion" text="Identificacion" />
+            <TextField fx:id="txtId"   />
+            <TextField fx:id="txtName"  />
+            <TextField fx:id="txtEmail"  />
+            <TextField fx:id="txtIdentificacion"  />
          </children>
       </VBox>
       <Button fx:id="btnSave" layoutX="88.0" layoutY="370.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Guardar" />

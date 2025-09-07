@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -24,7 +25,18 @@ class Client extends Persona{
     public Client(String id, String nombre, String email, String identificacion) {
         super(id, nombre, email, identificacion);
     }
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id='" + getId() + '\'' +
+                ", nombre='" + getNombre() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", identificacion='" + getIdentificacion() + '\'' +
+                '}';
+    }
 }
+
+
 
 public class ClientsController implements Initializable {
     @FXML
@@ -40,7 +52,7 @@ public class ClientsController implements Initializable {
     @FXML
     private Button btnBack;
 
-    ArrayList<Client> clients = new ArrayList<>();
+    private static ArrayList<Client> clients = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,6 +78,35 @@ public class ClientsController implements Initializable {
         for (Client c : clients) {
             System.out.println(c);
         }
+        System.out.println("Cliente guardado correctamente");
+        FacturaController.agregarCliente(client);
+    }
+
+    private boolean existeCliente(String id) {
+        return clients.stream().anyMatch(client -> client.getId().equals(id));
+    }
+
+
+    private void limpiarCampos() {
+        txtId.clear();
+        txtName.clear();
+        txtEmail.clear();
+        txtIdentificacion.clear();
+        txtId.requestFocus();
+    }
+
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+
+    public static ArrayList<Client> getClients() {
+        return clients;
     }
 
     private void Salir(ActionEvent event) {

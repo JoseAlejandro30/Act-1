@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.facturacion.Controllers.FacturaController">
+    <children>
+        <!-- Header -->
+        <HBox alignment="CENTER" styleClass="header-section">
+            <children>
+                <Label text="Sistema de Facturación" styleClass="title">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </HBox>
+
+        <!-- Search Section -->
+        <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="search-section">
+            <children>
+                <Label text="Buscar Cliente:" />
+                <TextField fx:id="txtBuscar" prefWidth="200.0" promptText="ID o Nombre del cliente..." />
+                <Button fx:id="btnBuscar" styleClass="btn-primary" text="Buscar" />
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+            </padding>
+        </HBox>
+
+        <!-- Main Content -->
+        <HBox VBox.vgrow="ALWAYS">
+            <children>
+                <!-- Left Panel - Clientes -->
+                <VBox prefWidth="350.0" styleClass="panel">
+                    <children>
+                        <Label styleClass="section-title" text="Clientes">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <TableView fx:id="clientesTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colClienteId" prefWidth="80.0" text="ID" />
+                                <TableColumn fx:id="colClienteNombre" prefWidth="250.0" text="Nombre" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+                    </padding>
+                </VBox>
+
+                <!-- Right Panel - Productos -->
+                <VBox HBox.hgrow="ALWAYS" styleClass="panel">
+                    <children>
+                        <Label styleClass="section-title" text="Productos">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <TableView fx:id="productosTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colProdDesc" prefWidth="200.0" text="Descripción" />
+                                <TableColumn fx:id="colProdPrecio" prefWidth="100.0" text="Precio" />
+                                <TableColumn fx:id="colProdStock" prefWidth="80.0" text="Stock" />
+                                <TableColumn fx:id="colProdImpuesto" prefWidth="100.0" text="Impuesto" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
+
+        <!-- Footer - Total -->
+        <HBox alignment="CENTER_RIGHT" styleClass="footer-section">
+            <children>
+                <Label text="Total: " styleClass="total-label">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lblTotal" styleClass="total-amount" text="0.00">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </HBox>
+    </children>
+</VBox>

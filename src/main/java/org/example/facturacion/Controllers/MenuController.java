@@ -30,10 +30,6 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Configurar texto de bienvenida
-        welcomeText.setText("Sistema de Facturación Básico");
-
-        // Configurar eventos de botones
         btnEnterUser.setOnAction(this::abrirClientes);
         btnEnterProducts.setOnAction(this::abrirProductos);
         btnBill.setOnAction(this::abrirFacturacion);
@@ -76,7 +72,7 @@ public class MenuController implements Initializable {
 
     private void abrirFacturacion(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/facturacion/Factura-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/facturacion/Factura.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

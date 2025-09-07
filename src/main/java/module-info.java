@@ -12,6 +12,7 @@ module org.example.facturacion {
     requires com.almasb.fxgl.all;
     requires javafx.graphics;
     requires java.desktop;
+    requires javafx.base;
 
     opens org.example.facturacion to javafx.fxml;
     exports org.example.facturacion;

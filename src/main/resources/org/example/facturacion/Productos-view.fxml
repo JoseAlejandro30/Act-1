@@ -34,6 +34,7 @@
       </VBox>
       <Label layoutX="229.0" layoutY="17.0" text="CAPTURA DE PRODUCTOS" />
       <RadioButton fx:id="rbtnWithTaxIVA" layoutX="250.0" layoutY="279.0" mnemonicParsing="false" text="IVA 19%" />
-      <RadioButton fx:id="rbtnWithoutTax" layoutX="394.0" layoutY="279.0" mnemonicParsing="false" text="Excento" />
+      <RadioButton fx:id="rbtnWithoutTax" layoutX="394.0" layoutY="279.0" mnemonicParsing="false" text="Exento" />
+      <Button fx:id="btnBack" layoutX="394.0" layoutY="338.0" mnemonicParsing="false" text="Regresar" />
    </children>
 </AnchorPane>

@@ -1,13 +1,20 @@
 package org.example.facturacion.Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -108,6 +115,8 @@ class Producto {
         private RadioButton rbtnWithTaxIVA;
         @FXML
         private Button btnGuardar;
+        @FXML
+        private Button btnBack;
 
         private ArrayList<Producto> productos = new ArrayList<>();
 
@@ -119,6 +128,7 @@ class Producto {
             rbtnWithoutTax.setToggleGroup(taxGroup);
             rbtnWithTaxIVA.setSelected(true);
             btnGuardar.setOnAction(e -> guardar());
+            btnBack.setOnAction(e -> Salir(e));
         }
 
         public void guardar() {
@@ -162,6 +172,7 @@ class Producto {
                     System.out.println((i + 1) + ". " + productos.get(i));
                 }
                 System.out.println("==========================");
+                FacturaController.agregarProducto(producto);
                 limpiarCampos();
 
 
@@ -219,6 +230,23 @@ class Producto {
 
         private boolean existeProducto(String id) {
             return productos.stream().anyMatch(p -> p.getId().equals(id));
+        }
+        public void Salir (ActionEvent event){
+            try {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/facturacion/Menu.view.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (IOException e) {
+                System.out.print(("Error"+ "No se pudo cargar la interfaz anterior"));
+                e.printStackTrace();
+            }
         }
 
         private void limpiarCampos() {
