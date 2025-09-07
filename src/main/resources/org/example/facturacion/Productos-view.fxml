@@ -18,24 +18,22 @@
                   <Label text="Descripcion" />
                   <Label text="Precio" />
                   <Label text="Stock" />
-                  <Label text="Impuesto" />
-                  <Label text="Excento" />
+                  <Label prefHeight="18.0" prefWidth="94.0" text="Tipo de Impuesto" />
                </children>
             </VBox>
             <Button fx:id="btnGuardar" layoutX="74.0" layoutY="320.0" mnemonicParsing="false" text="Guardar" />
          </children>
       </Pane>
-      <VBox layoutX="237.0" layoutY="59.0" prefHeight="238.0" prefWidth="230.0" spacing="20.0">
+      <VBox layoutX="233.0" layoutY="85.0" prefHeight="193.0" prefWidth="245.0" spacing="20.0">
          <children>
             <TextField fx:id="txtID" />
             <TextField fx:id="txtDescription" />
             <TextField fx:id="txtPrice" />
             <TextField fx:id="txtStock" prefHeight="27.0" prefWidth="224.0" />
-            <TextField fx:id="txtTax" />
-            <RadioButton fx:id="rbtnWithoutTax" mnemonicParsing="false" text="Sin Impuestos" />
          </children>
       </VBox>
       <Label layoutX="229.0" layoutY="17.0" text="CAPTURA DE PRODUCTOS" />
-      <RadioButton fx:id="rbtnWithTax" contentDisplay="BOTTOM" layoutX="379.0" layoutY="287.0" mnemonicParsing="false" text="Con Impuestos" />
+      <RadioButton fx:id="rbtnWithTaxIVA" layoutX="250.0" layoutY="279.0" mnemonicParsing="false" text="IVA 19%" />
+      <RadioButton fx:id="rbtnWithoutTax" layoutX="394.0" layoutY="279.0" mnemonicParsing="false" text="Excento" />
    </children>
 </AnchorPane>
