@@ -1,6 +1,6 @@
-package org.example.facturacion.Controllers;
+package org.example.facturacion.Classes;
 
-class LineaFactura {
+public class LineaFactura {
     private Producto producto;
     private int cantidad;
 
@@ -12,4 +12,8 @@ class LineaFactura {
     public double getSubtotal() { return producto.getPrice() * cantidad; }
     public Producto getProducto() { return producto; }
     public int getCantidad() { return cantidad; }
+    public double calcularImpuesto() {
+        double subtotal = getSubtotal(); // precio * cantidad
+        return producto.getTipodeImpuesto().calcularImpuesto(subtotal);
+    }
 }

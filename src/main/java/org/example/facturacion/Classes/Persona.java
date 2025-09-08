@@ -1,4 +1,4 @@
-package org.example.facturacion.Controllers;
+package org.example.facturacion.Classes;
 
 public class Persona {
     private String id;

@@ -18,4 +18,6 @@ module org.example.facturacion {
     exports org.example.facturacion;
     exports org.example.facturacion.Controllers;
     opens org.example.facturacion.Controllers to javafx.fxml;
+    exports org.example.facturacion.Classes;
+    opens org.example.facturacion.Classes to javafx.fxml;
 }

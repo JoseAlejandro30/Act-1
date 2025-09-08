@@ -11,32 +11,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.facturacion.Classes.Client;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-class Client extends Persona{
-
-    public Client() {
-    }
-
-    public Client(String id, String nombre, String email, String identificacion) {
-        super(id, nombre, email, identificacion);
-    }
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id='" + getId() + '\'' +
-                ", nombre='" + getNombre() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", identificacion='" + getIdentificacion() + '\'' +
-                '}';
-    }
-}
-
-
 
 public class ClientsController implements Initializable {
     @FXML
@@ -67,25 +47,27 @@ public class ClientsController implements Initializable {
         String identificacion = txtIdentificacion.getText();
 
         if (id.isEmpty() || nombre.isEmpty() || email.isEmpty() || identificacion.isEmpty()) {
-            System.out.println("Por favor rellene todos los campos");
+            mostrarAlerta("Campos vacíos", "Por favor, rellene todos los campos.", Alert.AlertType.WARNING);
             txtId.requestFocus();
             return;
         }
 
+        if (existeCliente(id)) {
+            mostrarAlerta("Error de duplicación", "Ya existe un cliente con el ID: " + id, Alert.AlertType.ERROR);
+            txtId.requestFocus();
+            return;
+        }
 
         Client client = new Client(id, nombre, email, identificacion);
         clients.add(client);
-        for (Client c : clients) {
-            System.out.println(c);
-        }
-        System.out.println("Cliente guardado correctamente");
-        FacturaController.agregarCliente(client);
+        System.out.println("Cliente guardado correctamente: " + client);
+        limpiarCampos();
+        mostrarAlerta("Éxito", "Cliente guardado correctamente", Alert.AlertType.INFORMATION);
     }
 
     private boolean existeCliente(String id) {
         return clients.stream().anyMatch(client -> client.getId().equals(id));
     }
-
 
     private void limpiarCampos() {
         txtId.clear();
@@ -95,7 +77,6 @@ public class ClientsController implements Initializable {
         txtId.requestFocus();
     }
 
-
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
@@ -104,27 +85,32 @@ public class ClientsController implements Initializable {
         alert.showAndWait();
     }
 
-
     public static ArrayList<Client> getClients() {
         return clients;
     }
 
+    /**
+     * Método auxiliar para encontrar un cliente por su ID en la lista estática.
+     * Esto asegura que siempre trabajemos con la misma instancia del objeto.
+     */
+    public static Client encontrarClientePorId(String clienteId) {
+        return clients.stream()
+                .filter(client -> client.getId().equals(clienteId))
+                .findFirst()
+                .orElse(null);
+    }
+
     private void Salir(ActionEvent event) {
         try {
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/facturacion/Menu.view.fxml"));
             Parent root = loader.load();
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
         } catch (IOException e) {
-            System.out.print(("Error"+ "No se pudo cargar la interfaz anterior"));
+            System.out.print(("Error" + "No se pudo cargar la interfaz anterior"));
             e.printStackTrace();
         }
     }
 }
-
